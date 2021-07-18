@@ -1,3 +1,5 @@
 
 mgbdis/
 *.gbc
+*.o
+tools/
