@@ -1095,25 +1095,10 @@ jr_002_46d8:
 
 jr_002_46f3:
     call Call_000_0775
-    ld b, h
-    ld b, a
-    inc c
-    ld b, a
-    inc de
-    ld b, a
-    ld a, [de]
-    ld b, a
-    ld hl, $4447
-    ld b, a
-    jr z, jr_002_474b
 
-    cpl
-    ld b, a
-    ld [hl], $47
-    dec a
-    ld b, a
-    ld b, h
-    ld b, a
+    db $44, $47, $0c, $47, $13, $47, $1a, $47, $21, $47, $44, $47, $28, $47, $2f, $47
+    db $36, $47, $3d, $47, $44, $47
+
     ld a, $ae
     ld [$c102], a
     jr jr_002_4744
@@ -1150,8 +1135,6 @@ jr_002_4744:
     ld a, [$c264]
     inc a
     ld [$c264], a
-
-jr_002_474b:
     cp $a0
     jr nz, jr_002_46d8
 
@@ -1579,21 +1562,20 @@ jr_002_49cc:
     ld [hl], a
     ld a, c
     call Call_000_0775
+
     ld h, $4a
     scf
     ld c, d
-    ld c, c
-    ld c, d
-    ld e, e
-    ld c, d
-    ld a, l
-    ld c, d
+
+    db $49, $4a, $5b, $4a, $7d, $4a
+
     add hl, bc
     ld c, d
     sub c
     ld c, d
-    ld l, l
-    ld c, d
+
+    db $6d, $4a, $ff, $49
+
     rst $38
     ld c, c
     rst $38
@@ -1608,8 +1590,7 @@ jr_002_49cc:
     ld c, c
     rst $38
     ld c, c
-    rst $38
-    ld c, c
+
     ld a, $ff
     ld [$c52c], a
     ld a, $ff
@@ -2512,6 +2493,7 @@ jr_002_4f34:
 
 jr_002_4f3c:
     call Call_000_0775
+
     ld d, e
     ld c, a
     ld d, e
@@ -2520,14 +2502,14 @@ jr_002_4f3c:
     ld c, a
     ld e, b
     ld c, a
-    ld e, b
-    ld c, a
+
+    db $58, $4f
+
     ld e, l
     ld c, a
-    ld e, l
-    ld c, a
-    ld h, d
-    ld c, a
+
+    db $5d, $4f, $62, $4f
+
     ld h, a
     ld c, a
     ld l, h
@@ -3553,14 +3535,14 @@ Call_002_552f:
     srl a
     srl a
     call Call_000_0775
+
+    db $4c, $55
+
     ld c, h
     ld d, l
-    ld c, h
-    ld d, l
-    ld [hl], e
-    ld d, a
-    ld e, [hl]
-    ld e, b
+
+    db $73, $57, $5e, $58
+
     ld a, [$c243]
     and a
     jr nz, jr_002_5595
@@ -3570,14 +3552,9 @@ Call_002_552f:
     ld a, [$c228]
     and $03
     call Call_000_0775
-    ld h, a
-    ld d, l
-    ld [hl], c
-    ld d, l
-    ld a, l
-    ld d, l
-    adc c
-    ld d, l
+
+    db $67, $55, $71, $55, $7d, $55, $89, $55
+
     ld a, [$c242]
     and $f1
     ld [$c242], a
@@ -3626,13 +3603,9 @@ jr_002_55bc:
     and $0e
     srl a
     call Call_000_0775
-    adc $55
-    jr c, jr_002_5620
 
-    and c
-    ld d, [hl]
-    add hl, bc
-    ld d, a
+    db $ce, $55, $38, $56, $a1, $56, $09, $57
+
     ld b, $ff
     ld a, [$c245]
     add b
@@ -3680,8 +3653,6 @@ jr_002_55bc:
     jr z, jr_002_5630
 
     cp $12
-
-jr_002_5620:
     jr z, jr_002_5630
 
     cp $14
@@ -3915,10 +3886,12 @@ jr_002_5770:
     srl a
     and $03
     call Call_000_0775
+
     sub b
     ld d, a
-    and b
-    ld d, a
+
+    db $a0, $57
+
     xor b
     ld d, a
     sbc b
@@ -4371,18 +4344,19 @@ jr_002_5a26:
     and $0f
     srl a
     call Call_000_0775
+
     ld b, b
     ld e, d
     ld e, h
     ld e, d
-    ld a, b
-    ld e, d
-    sub h
-    ld e, d
+
+    db $78, $5a, $94, $5a
+
     or b
     ld e, d
-    db $e3
-    ld e, d
+
+    db $e3, $5a
+
     dec d
     ld e, e
     ld b, a
@@ -8388,20 +8362,16 @@ jr_002_70ee:
 jr_002_70f6:
     dec a
     call Call_000_0775
-    ld l, b
-    ld [hl], a
-    ld l, b
-    ld [hl], a
+
+    db $68, $77, $68, $77
+
     rrca
     ld [hl], c
     ld a, [bc]
     ld [hl], c
-    ldh a, [rPCM34]
-    ld h, [hl]
-    ld a, b
-    ldh [$78], a
-    ld c, h
-    ld a, c
+
+    db $f0, $77, $66, $78, $e0, $78, $4c, $79
+
     ld a, $01
     ld [$c203], a
     ret
@@ -8594,24 +8564,19 @@ Call_002_71fe:
 jr_002_7206:
     push de
     call Call_000_0775
-    add b
-    ld [hl], d
-    ld d, c
-    ld [hl], d
-    add b
-    ld [hl], d
-    ld e, h
-    ld [hl], d
-    ld c, d
-    ld [hl], d
+
+    db $80, $72, $51, $72, $80, $72, $5c, $72, $4a, $72
+
     ld d, l
     ld [hl], d
+
+    db $80, $72
+
     add b
     ld [hl], d
-    add b
-    ld [hl], d
-    ld h, d
-    ld [hl], d
+
+    db $62, $72
+
     ld h, [hl]
     ld [hl], d
     ld e, h
@@ -8620,22 +8585,23 @@ jr_002_7206:
     ld [hl], d
     add b
     ld [hl], d
+
+    db $80, $72, $4e, $72
+
     add b
     ld [hl], d
-    ld c, [hl]
-    ld [hl], d
-    add b
-    ld [hl], d
-    ld l, d
-    ld [hl], d
+
+    db $6a, $72
+
     add b
     ld [hl], d
     ld e, a
     ld [hl], d
     add b
     ld [hl], d
-    ld b, [hl]
-    ld [hl], d
+
+    db $46, $72
+
     add b
     ld [hl], d
     ld l, [hl]
@@ -8654,6 +8620,7 @@ jr_002_7206:
     ld [hl], d
     add b
     ld [hl], d
+
     ld a, $14
     jr jr_002_7279
 
@@ -8668,10 +8635,12 @@ jr_002_7206:
     jr jr_002_728d
 
     call Call_002_4c87
+
     xor a
     jr jr_002_728d
 
     call Call_002_4c87
+
     ld a, $06
     jr jr_002_728d
 
@@ -8724,49 +8693,39 @@ jr_002_729b:
 
 jr_002_72a4:
     call Call_000_0775
-    ld [de], a
-    ld [hl], e
-    db $e3
-    ld [hl], d
-    ld [de], a
-    ld [hl], e
-    jp hl
 
+    db $12, $73, $e3, $72, $12, $73, $e9, $72
 
-    ld [hl], d
     xor $72
+
+    db $12, $73, $12, $73, $12, $73, $f4, $72, $fa, $72
+
     ld [de], a
-    ld [hl], e
-    ld [de], a
-    ld [hl], e
-    ld [de], a
-    ld [hl], e
-    db $f4
-    ld [hl], d
-    ld a, [$1272]
     ld [hl], e
     jp hl
 
 
     ld [hl], d
+
+    db $12, $73, $12, $73
+
     ld [de], a
     ld [hl], e
+
+    db $e3, $72
+
     ld [de], a
     ld [hl], e
-    ld [de], a
-    ld [hl], e
-    db $e3
-    ld [hl], d
-    ld [de], a
-    ld [hl], e
-    nop
-    ld [hl], e
+
+    db $00, $73
+
     ld [de], a
     ld [hl], e
     ld a, [$1272]
     ld [hl], e
-    ld [de], a
-    ld [hl], e
+
+    db $12, $73
+
     ld [de], a
     ld [hl], e
     xor $72
@@ -8784,6 +8743,7 @@ jr_002_72a4:
     ld [hl], e
     ld [de], a
     ld [hl], e
+
     pop hl
     pop de
     ld a, $05
@@ -8911,35 +8871,37 @@ Call_002_735c:
 
 jr_002_7365:
     call Call_000_0775
-    sbc $73
-    and a
-    ld [hl], e
-    cp c
-    ld [hl], e
-    sbc $73
+
+    db $de, $73, $a7, $73, $b9, $73, $de, $73
+
     or d
     ld [hl], e
-    jp $de73
-
-
+    db $c3
     ld [hl], e
+
+    db $de, $73
+
     sbc $73
-    xor e
-    ld [hl], e
+
+    db $ab, $73
+
     cp a
     ld [hl], e
     sbc $73
     sbc $73
     cp c
     ld [hl], e
+
+    db $de, $73, $c7, $73
+
     sbc $73
-    rst $00
-    ld [hl], e
+
+    db $a4, $73
+
     sbc $73
-    and h
-    ld [hl], e
-    sbc $73
-    bit 6, e
+
+    db $cb, $73
+
     sbc $73
     xor a
     ld [hl], e
@@ -8956,6 +8918,7 @@ jr_002_7365:
     ld [hl], e
     cp c
     ld [hl], e
+
     call Call_002_4c87
     ld a, $08
     jr jr_002_73eb
@@ -8968,6 +8931,7 @@ jr_002_7365:
     jr jr_002_73eb
 
     call Call_002_4c87
+
     xor a
     jr jr_002_73eb
 
@@ -9026,26 +8990,24 @@ jr_002_73f9:
 
 jr_002_7402:
     call Call_000_0775
-    ld l, d
-    ld [hl], h
-    ld b, c
-    ld [hl], h
-    ld b, a
-    ld [hl], h
-    ld l, d
-    ld [hl], h
+
+    db $6a, $74, $41, $74, $47, $74, $6a, $74
+
     ld c, h
     ld [hl], h
-    ld d, d
-    ld [hl], h
+
+    db $52, $74
+
     ld l, d
     ld [hl], h
-    ld l, d
-    ld [hl], h
+
+    db $6a, $74
+
     ld e, b
     ld [hl], h
-    ld l, d
-    ld [hl], h
+
+    db $6a, $74
+
     ld l, d
     ld [hl], h
     ld l, d
@@ -9056,16 +9018,19 @@ jr_002_7402:
     ld [hl], h
     ld l, d
     ld [hl], h
-    ld e, [hl]
-    ld [hl], h
+
+    db $5e, $74
+
     ld l, d
     ld [hl], h
-    ld b, c
-    ld [hl], h
+
+    db $41, $74
+
     ld l, d
     ld [hl], h
-    ld l, d
-    ld [hl], h
+
+    db $6a, $74
+
     ld l, d
     ld [hl], h
     ld d, d
@@ -9086,6 +9051,7 @@ jr_002_7402:
     ld [hl], h
     ld b, a
     ld [hl], h
+
     pop hl
     pop de
     ld a, $09
@@ -9212,21 +9178,14 @@ Call_002_74b7:
 
 jr_002_74c0:
     call Call_000_0775
+
+    db $35, $75, $02, $75, $35, $75
+
     dec [hl]
     ld [hl], l
-    ld [bc], a
-    ld [hl], l
-    dec [hl]
-    ld [hl], l
-    dec [hl]
-    ld [hl], l
-    ld b, $75
-    dec c
-    ld [hl], l
-    dec [hl]
-    ld [hl], l
-    inc d
-    ld [hl], l
+
+    db $06, $75, $0d, $75, $35, $75, $14, $75
+
     ld e, $75
     rla
     ld [hl], l
@@ -9234,14 +9193,9 @@ jr_002_74c0:
     ld [hl], l
     dec [hl]
     ld [hl], l
-    dec [hl]
-    ld [hl], l
-    dec [hl]
-    ld [hl], l
-    rst $38
-    ld [hl], h
-    ld [hl+], a
-    ld [hl], l
+
+    db $35, $75, $35, $75, $ff, $74, $22, $75
+
     dec [hl]
     ld [hl], l
     dec [hl]
@@ -9256,7 +9210,9 @@ jr_002_74c0:
     ld [hl], l
     ld a, [bc]
     ld [hl], l
-    ld h, $75
+
+    db $26, $75
+
     dec [hl]
     ld [hl], l
     dec [hl]
@@ -9267,6 +9223,7 @@ jr_002_74c0:
     ld [hl], l
     dec [hl]
     ld [hl], l
+
     call Call_002_4c87
     ld a, $04
     jr jr_002_7542
@@ -9275,10 +9232,12 @@ jr_002_74c0:
     jr jr_002_752e
 
     call Call_002_4c87
+
     ld a, $02
     jr jr_002_7542
 
     call Call_002_4c87
+
     xor a
     jr jr_002_7542
 
@@ -9335,42 +9294,37 @@ jr_002_7550:
 
 jr_002_755d:
     call Call_000_0775
+
+    db $c5, $75, $a8, $75
+
     push bc
     ld [hl], l
-    xor b
-    ld [hl], l
-    push bc
-    ld [hl], l
-    push bc
-    ld [hl], l
+
+    db $c5, $75
+
     xor [hl]
     ld [hl], l
     cp a
     ld [hl], l
+
+    db $c5, $75, $ba, $75, $c5, $75, $b4, $75
+
     push bc
     ld [hl], l
+
+    db $c5, $75
+
     cp d
     ld [hl], l
     push bc
     ld [hl], l
-    or h
-    ld [hl], l
     push bc
     ld [hl], l
     push bc
     ld [hl], l
-    cp d
-    ld [hl], l
-    push bc
-    ld [hl], l
-    push bc
-    ld [hl], l
-    push bc
-    ld [hl], l
-    xor b
-    ld [hl], l
-    sbc h
-    ld [hl], l
+
+    db $a8, $75, $9c, $75
+
     push bc
     ld [hl], l
     push bc
@@ -9385,8 +9339,9 @@ jr_002_755d:
     ld [hl], l
     or h
     ld [hl], l
-    push bc
-    ld [hl], l
+
+    db $c5, $75
+
     push bc
     ld [hl], l
     push bc
@@ -9395,6 +9350,7 @@ jr_002_755d:
     ld [hl], l
     push bc
     ld [hl], l
+
     pop hl
     pop de
     ld a, $19
@@ -9517,22 +9473,14 @@ Call_002_760f:
 
 jr_002_7618:
     call Call_000_0775
+
+    db $8d, $76, $5a, $76, $8d, $76
+
     adc l
     db $76
-    ld e, d
-    db $76
-    adc l
-    db $76
-    adc l
-    db $76
-    ld h, l
-    db $76
-    ld e, [hl]
-    db $76
-    ld l, h
-    db $76
-    adc l
-    db $76
+
+    db $65, $76, $5e, $76, $6c, $76, $8d, $76
+
     ld l, a
     db $76
     db $76
@@ -9541,14 +9489,14 @@ jr_002_7618:
     db $76
     ld l, h
     db $76
+
+    db $8d, $76
+
     adc l
     db $76
-    adc l
-    db $76
-    ld a, d
-    db $76
-    ld d, a
-    db $76
+
+    db $7a, $76, $57, $76
+
     adc l
     db $76
     adc l
@@ -9561,8 +9509,9 @@ jr_002_7618:
     db $76
     adc l
     db $76
-    ld a, d
-    db $76
+
+    db $7a, $76
+
     ld h, d
     db $76
     adc l
@@ -9577,6 +9526,7 @@ jr_002_7618:
     db $76
     ld l, h
     db $76
+
     call Call_002_4c87
     ld a, $05
     jr jr_002_769a
@@ -9585,10 +9535,12 @@ jr_002_7618:
     jr jr_002_7686
 
     call Call_002_4c87
+
     ld a, $02
     jr jr_002_769a
 
     call Call_002_4c87
+
     xor a
     jr jr_002_769a
 
@@ -9645,27 +9597,20 @@ jr_002_76a8:
 
 jr_002_76b5:
     call Call_000_0775
+
+    db $1d, $77, $00, $77
+
     dec e
     ld [hl], a
-    nop
-    ld [hl], a
-    dec e
-    ld [hl], a
-    dec e
-    ld [hl], a
+
+    db $1d, $77
+
     rla
     ld [hl], a
     ld b, $77
-    ld [de], a
-    ld [hl], a
-    dec e
-    ld [hl], a
-    inc c
-    ld [hl], a
-    dec e
-    ld [hl], a
-    dec e
-    ld [hl], a
+
+    db $12, $77, $1d, $77, $0c, $77, $1d, $77, $1d, $77
+
     dec e
     ld [hl], a
     dec e
@@ -9676,9 +9621,9 @@ jr_002_76b5:
     ld [hl], a
     dec e
     ld [hl], a
-    db $f4
-    halt
-    ld [hl], a
+
+    db $f4, $76, $00, $77
+
     dec e
     ld [hl], a
     dec e
@@ -9689,8 +9634,9 @@ jr_002_76b5:
     ld [hl], a
     dec e
     ld [hl], a
-    dec e
-    ld [hl], a
+
+    db $1d, $77
+
     inc c
     ld [hl], a
     dec e
@@ -9701,6 +9647,7 @@ jr_002_76b5:
     ld [hl], a
     ld [de], a
     ld [hl], a
+
     pop hl
     pop de
     ld a, $18
@@ -9827,14 +9774,14 @@ jr_002_7766:
     srl a
     and $03
     call Call_000_0775
-    adc l
-    ld [hl], a
+
+    db $8d, $77
+
     sbc c
     ld [hl], a
-    and l
-    ld [hl], a
-    or c
-    ld [hl], a
+
+    db $a5, $77, $b1, $77
+
     ld a, $19
     ld [$dd01], a
     ld a, $94
@@ -10184,24 +10131,11 @@ jr_002_79b1:
     ret
 
 
-    add b
-    ld b, b
-    ld [bc], a
-    nop
-    add b
-    ld c, b
-    inc b
-    nop
-    ld b, $06
-    rlca
-    rlca
-    rlca
-    ld [$0808], sp
+    db $80, $40, $02, $00, $80, $48, $04, $00, $06, $06, $07, $07, $07, $08, $08, $08
+    db $09
+
     add hl, bc
     add hl, bc
-
-jr_002_79cc:
-    add hl, bc
     ld a, [bc]
     ld a, [bc]
     ld a, [bc]
@@ -10291,87 +10225,22 @@ jr_002_79cc:
     dec c
     dec c
     dec c
-    ld d, b
-    jr nz, jr_002_7a89
 
-    ld [hl], b
-    jr nc, jr_002_7a8c
+    db $50, $20, $60, $70, $30, $60, $30, $20, $00, $80, $60, $50, $00, $10, $40, $60
+    db $60, $20, $30, $20, $00, $80, $50, $60, $50, $70, $10, $50, $40, $10, $10, $80
+    db $40, $70, $20, $20, $20, $80, $50, $30, $50, $70, $20, $60, $20, $20, $50, $50
+    db $10, $20, $20, $70, $50, $60
 
-    jr nc, @+$22
-
-    nop
-    add b
-    ld h, b
-    ld d, b
-    nop
     db $10
-    ld b, b
-    ld h, b
-    ld h, b
-    jr nz, jr_002_7a69
-
-    jr nz, jr_002_7a3b
-
-jr_002_7a3b:
-    add b
-    ld d, b
-    ld h, b
-    ld d, b
-    ld [hl], b
-    db $10
-    ld d, b
-    ld b, b
-    db $10
-    db $10
-    add b
-    ld b, b
-    ld [hl], b
-    jr nz, @+$22
-
-    jr nz, jr_002_79cc
-
-    ld d, b
-    jr nc, jr_002_7a9f
-
-    ld [hl], b
-    jr nz, jr_002_7ab2
-
-    jr nz, @+$22
-
-    ld d, b
-    ld d, b
-    db $10
-    jr nz, jr_002_7a79
-
-    ld [hl], b
-    ld d, b
-    ld h, b
-    db $10
-    jr nz, jr_002_7aaf
+    jr nz, @+$52
 
     ld b, b
-    jr nc, jr_002_7ad2
+    jr nc, @+$72
 
-    ldh a, [$f0]
-    ldh a, [$f0]
-    ldh a, [$f0]
-    ld [bc], a
+    db $f0, $f0, $f0, $f0, $f0, $f0, $02, $06, $0a, $06, $0e, $12, $16, $12, $1a, $1e
+    db $22, $1e, $26, $2a, $2e, $2a, $32, $36, $3a, $36
 
-jr_002_7a69:
-    ld b, $0a
-    ld b, $0e
-    ld [de], a
-    ld d, $12
-    ld a, [de]
-    ld e, $22
-    ld e, $26
-    ld a, [hl+]
-    ld l, $2a
-    ld [hl-], a
-
-jr_002_7a79:
-    ld [hl], $3a
-    ld [hl], $a8
+    xor b
     xor h
     or b
     xor h
@@ -10379,30 +10248,10 @@ jr_002_7a79:
     cp b
     cp h
     cp b
-    ld b, d
-    ld b, d
-    ld b, d
-    ld b, d
-    ld b, d
 
-jr_002_7a89:
-    ld b, [hl]
-    ld b, [hl]
-    ld b, [hl]
+    db $42, $42, $42, $42, $42, $46, $46, $46, $46, $46, $4a, $4a, $4a, $4a, $4a, $4e
+    db $4e, $4e, $4e, $4e
 
-jr_002_7a8c:
-    ld b, [hl]
-    ld b, [hl]
-    ld c, d
-    ld c, d
-    ld c, d
-    ld c, d
-    ld c, d
-    ld c, [hl]
-    ld c, [hl]
-    ld c, [hl]
-    ld c, [hl]
-    ld c, [hl]
     ld a, [hl]
     ld a, [hl]
     ld a, [hl]
@@ -10410,814 +10259,39 @@ jr_002_7a8c:
     add d
     add d
     add d
-
-jr_002_7a9f:
     add d
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
 
-jr_002_7aaf:
-    rst $38
-    rst $38
-    rst $38
+    db $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $e1, $ef, $d1, $ff, $d9, $ff, $d9, $ff, $9f, $ff, $9f
+    db $ff, $9f, $ff, $81, $ff, $99, $ff, $d9, $ff, $d9, $ef, $d1, $fb, $e5, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $cf, $ff, $cf, $ff, $cf, $f7, $cf, $ff, $c7, $bf, $c7
+    db $ff, $a7, $fb, $a7, $ff, $83, $ff, $a3, $ff, $b3, $ff, $b3, $ff, $01, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $b9, $ff, $bb, $d7, $bb, $ff, $93, $ff, $93, $ff, $83
+    db $ff, $83, $ff, $83, $ff, $83, $ff, $ab, $ff, $ab, $ff, $bb, $ff, $b9, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $81, $ff, $d9, $ff, $d9, $ff, $df, $ff, $d3, $ff, $d3
+    db $ff, $c3, $ff, $d3, $ff, $d3, $ff, $df, $ff, $d9, $ff, $d9, $ff, $81, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $e3, $ed, $d3, $ff, $d9, $bf, $d9, $ff, $99, $ff, $99
+    db $ff, $99, $ff, $99, $ff, $99, $bf, $d9, $ff, $d9, $ed, $d3, $ff, $e3, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $81, $ff, $b3, $ff, $b3, $ff, $b3, $ff, $b3, $fb, $a7
+    db $ff, $a7, $bf, $c7, $ff, $c7, $f7, $cf, $ff, $cf, $ff, $cf, $ff, $cf, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $83, $fd, $d3, $ff, $d9, $ff, $d9, $ff, $d9, $fd, $d3
+    db $ff, $c3, $ff, $c7, $ff, $d3, $ff, $d3, $ff, $d3, $ff, $d3, $ff, $89, $ff, $ff
+    db $b0, $7b, $f0, $7b, $30, $7c, $70, $7c, $b0, $7c, $f0, $7c, $30, $7d, $70, $7d
+    db $00, $00, $00, $00, $00, $00, $00, $00, $03, $00, $08, $07, $10, $0f, $00, $1f
+
+    INCBIN "gfx/image_002_7bc0.2bpp"
+
+    INCBIN "gfx/image_002_7cc0.2bpp"
+
+    db $05, $05, $05, $05, $05, $04, $04, $04, $03, $03, $03, $02, $02, $01, $00, $00
+    db $00, $00, $01, $02, $02, $03, $03, $03, $04, $04, $04, $05, $05, $05, $05, $05
 
-jr_002_7ab2:
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    pop hl
-    rst $28
-    pop de
-    rst $38
-    reti
-
-
-    rst $38
-    reti
-
-
-    rst $38
-    sbc a
-    rst $38
-    sbc a
-    rst $38
-    sbc a
-
-jr_002_7ad2:
-    rst $38
-    add c
-    rst $38
-    sbc c
-    rst $38
-    reti
-
-
-    rst $38
-    reti
-
-
-    rst $28
-    pop de
-    ei
-    push hl
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $08
-    rst $38
-    rst $08
-    rst $38
-    rst $08
-    rst $30
-    rst $08
-    rst $38
-    rst $00
-    cp a
-    rst $00
-    rst $38
-    and a
-    ei
-    and a
-    rst $38
-    add e
-    rst $38
-    and e
-    rst $38
-    or e
-    rst $38
-    or e
-    rst $38
-    ld bc, $ffff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    cp c
-    rst $38
-    cp e
-    rst $10
-    cp e
-    rst $38
-    sub e
-    rst $38
-    sub e
-    rst $38
-    add e
-    rst $38
-    add e
-    rst $38
-    add e
-    rst $38
-    add e
-    rst $38
-    xor e
-    rst $38
-    xor e
-    rst $38
-    cp e
-    rst $38
-    cp c
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    add c
-    rst $38
-    reti
-
-
-    rst $38
-    reti
-
-
-    rst $38
-    rst $18
-    rst $38
-    db $d3
-    rst $38
-    db $d3
-    rst $38
-    jp $d3ff
-
-
-    rst $38
-    db $d3
-    rst $38
-    rst $18
-    rst $38
-    reti
-
-
-    rst $38
-    reti
-
-
-    rst $38
-    add c
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    db $e3
-    db $ed
-    db $d3
-    rst $38
-    reti
-
-
-    cp a
-    reti
-
-
-    rst $38
-    sbc c
-    rst $38
-    sbc c
-    rst $38
-    sbc c
-    rst $38
-    sbc c
-    rst $38
-    sbc c
-    cp a
-    reti
-
-
-    rst $38
-    reti
-
-
-    db $ed
-    db $d3
-    rst $38
-    db $e3
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    add c
-    rst $38
-    or e
-    rst $38
-    or e
-    rst $38
-    or e
-    rst $38
-    or e
-    ei
-    and a
-    rst $38
-    and a
-    cp a
-    rst $00
-    rst $38
-    rst $00
-    rst $30
-    rst $08
-    rst $38
-    rst $08
-    rst $38
-    rst $08
-    rst $38
-    rst $08
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    add e
-    db $fd
-    db $d3
-    rst $38
-    reti
-
-
-    rst $38
-    reti
-
-
-    rst $38
-    reti
-
-
-    db $fd
-    db $d3
-    rst $38
-    jp $c7ff
-
-
-    rst $38
-    db $d3
-    rst $38
-    db $d3
-    rst $38
-    db $d3
-    rst $38
-    db $d3
-    rst $38
-    adc c
-    rst $38
-    rst $38
-    or b
-    ld a, e
-    ldh a, [$7b]
-    jr nc, jr_002_7c22
-
-    ld [hl], b
-    ld a, h
-    or b
-    ld a, h
-    ldh a, [$7c]
-    jr nc, jr_002_7c2b
-
-    ld [hl], b
-    ld a, l
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc bc
-    nop
-    ld [$1007], sp
-    rrca
-    nop
-    rra
-    ld hl, $031f
-    ccf
-    ld de, $383f
-    rra
-    rrca
-    rra
-    rlca
-    rrca
-    inc b
-    inc bc
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ret nz
-
-    nop
-    db $10
-    ldh [$08], a
-    ldh a, [rP1]
-    ld hl, sp-$3c
-    ld hl, sp-$20
-    db $fc
-    ret z
-
-    db $fc
-    inc e
-    ld hl, sp-$10
-    ld hl, sp-$20
-    ldh a, [rNR41]
-    ret nz
-
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0200
-    ld bc, $030d
-    db $10
-    rrca
-    dec h
-    ld a, [de]
-    inc hl
-    inc e
-    ld [de], a
-    dec c
-    ld [hl], $09
-    inc h
-    dec de
-
-jr_002_7c06:
-    jr c, jr_002_7c0f
-
-    rla
-    ld [$1028], sp
-    jr nc, jr_002_7c0e
-
-jr_002_7c0e:
-    nop
-
-jr_002_7c0f:
-    nop
-    nop
-    nop
-    jr c, jr_002_7c14
-
-jr_002_7c14:
-    ret z
-
-    jr nc, jr_002_7c0f
-
-    ldh a, [$98]
-    ldh a, [$ac]
-    ld [hl], b
-    ld a, $e8
-    ld [hl], $fc
-    ld c, h
-    cp b
-
-jr_002_7c22:
-    sbc b
-    ld [hl], b
-    jr nc, jr_002_7c06
-
-    jr nz, @-$3e
-
-    ret nz
-
-    nop
-    nop
-
-jr_002_7c2b:
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld c, $00
-    inc e
-    inc bc
-    jr c, @+$09
-
-    jr jr_002_7c65
-
-    jr z, @+$39
-
-    jr jr_002_7c81
-
-    ld c, $3f
-    inc bc
-    ccf
-    ld bc, $213f
-    rra
-    db $10
-    rrca
-    dec b
-    inc bc
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld [hl], b
-    nop
-    add sp, $10
-
-jr_002_7c58:
-    call nz, $4038
-    cp h
-    ld b, b
-    cp h
-    ld [$30fc], sp
-    db $fc
-    ldh [$fc], a
-    add b
-
-jr_002_7c65:
-    db $fc
-    nop
-    db $fc
-    inc b
-    ld hl, sp+$10
-    ldh [rLCDC], a
-    add b
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0300
-    ld bc, $0304
-    inc bc
-    rlca
-    dec b
-    inc bc
-    ld [bc], a
-    ld bc, $0305
-    dec bc
-
-jr_002_7c81:
-    rlca
-    dec c
-    rlca
-    ld c, $05
-    rrca
-    inc b
-    dec c
-    ld b, $0b
-    rlca
-    rlca
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    nop
-    ld b, b
-    add b
-    jr nz, jr_002_7c58
-
-    add b
-    ldh [rNR41], a
-    ret nz
-
-    ld b, b
-    add b
-    and b
-    ret nz
-
-    ret nc
-
-    ldh [$b0], a
-    ldh [rSVBK], a
-    and b
-    ldh a, [rNR41]
-    or b
-    ld h, b
-    ret nc
-
-    ldh [$e0], a
-    nop
-    nop
-    nop
-    nop
-    nop
-    rlca
-    nop
-    dec c
-    inc bc
-    ld a, [de]
-    dec c
-    rra
-    rrca
-    rra
-    rrca
-    add hl, de
-    rrca
-    inc d
-    rrca
-    ld a, [bc]
-    rlca
-    dec b
-    inc bc
-    inc bc
-    ld bc, $0103
-    rlca
-    inc bc
-    dec b
-    inc bc
-
-jr_002_7ccc:
-    inc bc
-    nop
-
-jr_002_7cce:
-    nop
-    nop
-    nop
-    nop
-    ldh [rP1], a
-    or b
-    ret nz
-
-    ld e, b
-    or b
-    ld hl, sp-$10
-
-jr_002_7cda:
-    jr jr_002_7ccc
-
-    jr jr_002_7cce
-
-    xor b
-    ldh a, [$d0]
-    ldh [$a0], a
-    ret nz
-
-    ld b, b
-    add b
-    ld b, b
-    add b
-    ldh [$c0], a
-    and b
-    ret nz
-
-    ret nz
-
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0200
-    ld bc, $0305
-    inc b
-    inc bc
-    dec bc
-    rlca
-    inc c
-    inc bc
-    rla
-    rrca
-    dec e
-    dec bc
-    dec de
-    rrca
-    ld b, $0f
-    dec e
-    ld c, $15
-    ld c, $0b
-    rlca
-    rlca
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    nop
-    ld b, b
-    add b
-    and b
-    ret nz
-
-    jr nz, jr_002_7cda
-
-    ret nc
-
-    ldh [$30], a
-    ret nz
-
-    add sp, -$10
-
-jr_002_7d20:
-    cp b
-    ret nc
-
-    ld e, b
-    ldh a, [$a0]
-    ld [hl], b
-    ld hl, sp+$30
-    xor b
-    ld [hl], b
-    ret nc
-
-    ldh [$e0], a
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc bc
-    nop
-    dec b
-    inc bc
-    rlca
-    inc bc
-    dec b
-    inc bc
-    ld a, [bc]
-    rlca
-    dec c
-    inc bc
-    inc b
-    inc bc
-    ld a, [bc]
-    rlca
-    rrca
-    rlca
-    rla
-    rrca
-    add hl, de
-    rrca
-    ld d, $09
-    rra
-    rlca
-    rrca
-    nop
-    nop
-    nop
-    nop
-    nop
-    ret nz
-
-    nop
-    and b
-    ret nz
-
-    ldh [$c0], a
-
-jr_002_7d58:
-    and b
-    ret nz
-
-    ld d, b
-    ldh [$b0], a
-    ret nz
-
-    jr nz, jr_002_7d20
-
-    ld d, b
-    ldh [$f0], a
-    ldh [$e8], a
-    ldh a, [$98]
-    ldh a, [rBCPS]
-    sub b
-    ld hl, sp-$20
-    ldh a, [rP1]
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0300
-    ld bc, $0304
-    dec b
-    inc bc
-    ld c, $01
-    ld d, $0f
-    dec l
-    rra
-    dec l
-    rra
-    ld d, $0f
-    dec bc
-    rlca
-    add hl, bc
-    rlca
-    dec bc
-    rlca
-    dec bc
-    rlca
-    rrca
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    nop
-    ld b, b
-    add b
-    jr nz, jr_002_7d58
-
-    and b
-    ret nz
-
-    ldh a, [rP1]
-    ld c, b
-    ldh a, [$a4]
-    ld hl, sp-$5c
-    ld hl, sp+$48
-    ldh a, [$90]
-    ldh [rNR10], a
-    ldh [rNR10], a
-    ldh [rNR10], a
-    ldh [$f0], a
-    nop
-    nop
-    nop
-    dec b
-    dec b
-    dec b
-    dec b
-    dec b
-    inc b
-    inc b
-    inc b
-    inc bc
-    inc bc
-    inc bc
-    ld [bc], a
-    ld [bc], a
-    ld bc, $0000
-    nop
-    nop
-    ld bc, $0202
-    inc bc
-    inc bc
-    inc bc
-    inc b
-    inc b
-    inc b
-    dec b
-    dec b
-    dec b
-    dec b
-    dec b
     ld a, h
     nop
-    db $ec
-    nop
-    nop
+
+    db $ec, $00, $00
+
     ld [hl], h
     nop
     nop
@@ -11233,9 +10307,9 @@ jr_002_7d58:
     nop
     nop
     ld a, h
-    sub b
-    nop
-    add b
+
+    db $90, $00, $80
+
     nop
     adc h
     nop
@@ -11261,9 +10335,9 @@ jr_002_7d58:
     sub b
     nop
     add b
-    nop
-    ld a, h
-    db $ec
+
+    db $00, $7c, $ec
+
     nop
     nop
     ld a, b
@@ -11275,9 +10349,9 @@ jr_002_7d58:
     nop
     sub b
     ld a, b
-    nop
-    add b
-    adc h
+
+    db $00, $80, $8c
+
     adc b
     nop
     ld a, h
@@ -11289,19 +10363,19 @@ jr_002_7d58:
     add b
     adc h
     nop
-    nop
-    adc h
-    nop
-    nop
-    add b
-    nop
-    nop
-    add b
+
+    db $00, $8c, $00
+
     nop
     add b
     nop
     nop
+    add b
     nop
+    add b
+
+    db $00, $00, $00
+
     add b
     sub b
     nop
@@ -11309,9 +10383,9 @@ jr_002_7d58:
     adc b
     nop
     nop
-    adc b
-    nop
-    nop
+
+    db $88, $00, $00
+
     ld a, h
     nop
     nop
@@ -11336,9 +10410,9 @@ jr_002_7d58:
     add b
     nop
     sub b
-    nop
-    nop
-    ld a, h
+
+    db $00, $00, $7c
+
     nop
     nop
     nop
@@ -11353,9 +10427,9 @@ jr_002_7d58:
     nop
     nop
     adc b
-    nop
-    add b
-    nop
+
+    db $00, $80, $00
+
     nop
     nop
     sub b
@@ -11367,9 +10441,9 @@ jr_002_7d58:
     nop
     nop
     add b
-    nop
-    db $ec
-    ld a, b
+
+    db $00, $ec, $78
+
     nop
     adc h
     nop

@@ -144,9 +144,12 @@ Call_000_0061:
     ldh a, [$b1]
     push af
     ldh a, [$b2]
+
     ldh [$b1], a
     ld [$2000], a
     call Call_000_007c
+
+Jump_000_0070:
     pop af
     ldh [$b1], a
     ld [$2000], a
@@ -161,9 +164,38 @@ Call_000_007c:
     jp hl
 
 
-    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    nop
+    nop
 
+Call_000_007f:
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
     rst $38
     rst $38
     rst $38
@@ -216,6 +248,35 @@ Jump_000_00c2:
     rst $38
     rst $38
     rst $38
+
+Jump_000_00cb:
+    rst $38
+    rst $38
+
+Call_000_00cd:
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+
+Jump_000_00d2:
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+    rst $38
+
+Call_000_00e0:
     rst $38
     rst $38
     rst $38
@@ -246,27 +307,8 @@ Jump_000_00c2:
     rst $38
     rst $38
     rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
+
+Call_000_00fe:
     rst $38
     rst $38
 
@@ -324,6 +366,8 @@ HeaderGlobalChecksum::
 Jump_000_0150:
     ld sp, $dfff
     push af
+
+Call_000_0154:
     call Call_000_0786
     call Call_000_075d
     ld d, $00
@@ -805,6 +849,8 @@ jr_000_042d:
 
 jr_000_0437:
     ld d, a
+
+Jump_000_0438:
     ld a, c
     and $07
     swap a
@@ -1102,6 +1148,7 @@ Jump_000_0610:
 
 
 Call_000_0611:
+Jump_000_0611:
     and $03
     ret z
 
@@ -1151,6 +1198,8 @@ Call_000_063f:
     ld a, [$cf0d]
     ld e, a
     ld a, [$cf0e]
+
+Call_000_0647:
     ld d, a
     inc de
     ldh a, [rLY]
@@ -1383,7 +1432,16 @@ jr_000_0764:
     ret
 
 
-    db $3e, $c0, $e0, $46, $3e, $28, $3d, $20, $fd, $c9
+    ld a, $c0
+    ldh [rDMA], a
+    ld a, $28
+
+jr_000_0771:
+    dec a
+    jr nz, jr_000_0771
+
+    ret
+
 
 Call_000_0775:
 Jump_000_0775:
@@ -1992,6 +2050,8 @@ jr_000_0a4d:
     nop
     nop
     nop
+
+Jump_000_0a5b:
     nop
     nop
     nop
@@ -2124,6 +2184,8 @@ jr_000_0acb:
     ld b, a
     ld [$0b00], sp
     call nz, Call_000_16d0
+
+Jump_000_0b04:
     and l
     set 1, c
     dec b
@@ -3253,6 +3315,8 @@ jr_000_0fc9:
     rst $38
     rst $38
     rst $38
+
+Jump_000_0fff:
     rst $38
     rst $38
     rst $38
@@ -3480,6 +3544,8 @@ Jump_000_1010:
     rst $38
     rst $38
     rst $38
+
+Call_000_10e0:
     rst $38
     rst $38
     rst $38
@@ -3560,6 +3626,8 @@ Jump_000_1010:
     rst $38
     rst $38
     rst $38
+
+Jump_000_1130:
     rst $38
     rst $38
     rst $38
@@ -4801,6 +4869,8 @@ Jump_000_1211:
     rst $38
     rst $38
     rst $38
+
+Jump_000_1603:
     rst $38
     rst $38
     rst $38
@@ -5444,6 +5514,8 @@ Jump_000_1801:
     rst $38
     rst $38
     rst $38
+
+Call_000_1880:
     rst $38
     rst $38
     rst $38
@@ -6200,6 +6272,8 @@ Call_000_18ff:
     rst $38
     rst $38
     rst $38
+
+Jump_000_1b72:
     rst $38
     rst $38
     rst $38
@@ -6594,6 +6668,8 @@ Call_000_18ff:
     rst $38
     rst $38
     rst $38
+
+Call_000_1cfc:
     rst $38
     rst $38
     rst $38
@@ -7133,6 +7209,8 @@ Call_000_1ee1:
     rst $38
     rst $38
     rst $38
+
+Jump_000_1f11:
     rst $38
     rst $38
     rst $38
@@ -7383,6 +7461,8 @@ Call_000_1fe2:
 Jump_000_1ffd:
     rst $38
     rst $38
+
+Jump_000_1fff:
     rst $38
     rst $38
     rst $38
@@ -10039,6 +10119,8 @@ Jump_000_2639:
     rst $38
     rst $38
     rst $38
+
+Call_000_2a55:
     rst $38
     rst $38
     rst $38
@@ -12277,6 +12359,8 @@ Jump_000_3285:
     rst $38
     rst $38
     rst $38
+
+Call_000_330d:
     rst $38
     rst $38
     rst $38
@@ -12297,6 +12381,8 @@ Jump_000_3285:
     rst $38
     rst $38
     rst $38
+
+Jump_000_3321:
     rst $38
     rst $38
     rst $38
@@ -15532,6 +15618,8 @@ Call_000_3e3e:
     rst $38
     rst $38
     rst $38
+
+Call_000_3fc0:
     rst $38
     rst $38
     rst $38
